@@ -1,6 +1,6 @@
 # QT-Custom-CMake-Wizards
-
-This repository contains two (2) custom wizards for Qt Creator. 
+ 
+Custom wizards for Qt Creator using Cmake as the build system. 
 * Custom Project Wizard based on CMake
 * Custom class wizard
 
