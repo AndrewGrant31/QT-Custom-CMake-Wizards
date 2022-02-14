@@ -43,7 +43,7 @@ and a project level CMakeLists.txt which sets the include files, configures the 
 It is not meant for the sophisticated C++ projects you can find here on GitHub and other places, but is mainly meant for simple quick and easy projects.  
 
 ## Qt Creator Class Wizard
-This project creats a class for inclusion in your Qt Creator CMake C++ custom project, as outlined above. 
+This project creates a class for inclusion in your Qt Creator CMake C++ custom project, as outlined above. 
 It creates a declaration file and a definition file. It will place these in the correct folders, and enable you to copy the text you require to include the files in the 
 project source level CMakeLists.txt. Literally highlight, copy and paste actions in the normal way.
 If your project utilises a precompiled header file, make sure to tick the approriate box and point to the precompiled header folder, no need to point to the file. 
@@ -58,7 +58,7 @@ The wizard does not check for name clashes or correctness, other than the normal
 
 ## Placement
 
-These two wizards should be placed in the approrpriate locations for Qt Creator wizards. You can find the relevant places on the Qt Creatro website (https://doc.qt.io/qtcreator/creator-project-wizards.html) 
+These two wizards should be placed in the approrpriate locations for Qt Creator wizards. You can find the relevant places on the Qt Creator website (https://doc.qt.io/qtcreator/creator-project-wizards.html) 
 The relevant directories are listed, on the web page as being (as of January 2022): 
 * Windows: share\qtcreator\templates\wizards
 * Linux: share/qtcreator/templates/wizards
@@ -95,6 +95,9 @@ Just copy the wizard and approariate files and folders to a new folder, in the c
 *     "trDisplayCategory": "Basic C/C++",  
  
  at the start of the wizard and have it! :D 
+ 
+ I've just discovered I made a mistake wih naming the custom project - it is set to project. Not a terribly good name, you will more than likely find it useful to change the name of the project folder (directory) to something more understandable. 
+Sorry for this rather simple and basic error. :( 
 
 (The start of each wizard is basically the same, so just change what you need and enoy yourself with whatever changes you want to make)
 
