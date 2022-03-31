@@ -1,0 +1,309 @@
+{
+    "version": 1,
+    "supportedProjectTypes": [ ],
+    "id": "AG.ClassGTest",
+    "category": "O.C++",
+    "trDescription": "Creates a C++ declaration, definition and test files for a new class that you can add to a C++ project.",
+    "trDisplayName": "C++ Class with GTest",
+    "trDisplayCategory": "Basic C/C++",
+    "iconText": "h/cpp",
+    "enabled": "%{JS: value('Plugins').indexOf('CppEditor') >= 0}",
+
+    "options":
+    [
+        { "key": "basePath", "value": "%{InitialPath}" },
+        { "key": "path", "value": "%{basePath}" },
+        
+        { "key": "TargetPath", "value": "%{path}" },
+        { "key": "DeclarationPath", "value": "%{JS: value('newDirectory') === 'ON' ? '%{declarationPath}/%{newDirectoryId}' : '%{declarationPath}' }" },
+        { "key": "DefinitionPath", "value": "%{JS: value('newDirectory') === 'ON' ? '%{definitionPath}/%{newDirectoryId}' : '%{definitionPath}' }" },
+
+        { "key": "shortenedHeaderPath", "value": "%{JS: Util.relativeFilePath('%{DeclarationPath}/%{HdrFileName}', '%{InitialPath}' + '/' + Util.path('%{SrcFileName}'))}" },
+        { "key": "shortenedSourcePath", "value": "%{JS: Util.relativeFilePath('%{DefinitionPath}/%{SrcFileName}', '%{InitialPath}' + '/' + Util.path('%{HdrFileName}'))}" },
+        { "key": "pchPath", "value": "%{JS: Util.relativeFilePath('%{pchLocation}/pch.h', '%{DeclarationPath}' + '/' + Util.path('pch.cpp'))}" },
+        
+        { "key": "HdrPath", "value": "%{DeclarationPath}/%{HdrFileName}" },
+        { "key": "SrcPath", "value": "%{DefinitionPath}/%{SrcFileName}" },
+        
+        { "key": "CN", "value": "%{JS: Cpp.className(value('Class'))}" },     
+        { "key": "testClass", "value": "%{JS: 'test_%{CN}' + Util.preferredSuffix('text/x-c++hdr') " },                 
+
+        { "key": "GUARD", "value": "%{JS: Cpp.classToHeaderGuard(value('Class'), Util.suffix(value('HdrFileName')))}" }
+    ],
+
+    "pages":
+    [
+        {
+            "trDisplayName": "Accept License",
+            "trShortTitle": "License",
+            "typeId":"Fields",
+            "data":
+            [
+                {
+                    "name": "licenseLabel",
+                    "trDisplayName": " ",
+                    "span": false,
+                    "type": "Label",
+                    "data":
+                    {
+                        "wordWrap": true,
+                        "trText": "Licensed using the LGPL v3 license.\nClicking \"Next\" assumes acceptance of the license"
+                    }
+                },
+                {
+                    "name": "readLicense",
+                    "trDisplayName": "Read the LGPL V3 license summary",
+                    "type": "CheckBox",
+                    "data":
+                    {
+                        "checkedValue": "ON",
+                        "uncheckedValue": "",
+                        "checked": ""
+                    }
+                },
+
+                 {
+                    "name": "license",
+                    "type": "Label",
+                    "span": false,
+                    "visible": "%{JS: value('readLicense') == 'ON' ? true : false}",
+                    "data":
+                    {
+                        "wordWrap": true,
+                        "trText": "
+                        This software enables the creation of a C++ console application. 
+                        Copyright (C) 2021  Andrew Grant, contact via 
+                        andrewgrant31@users.noreply.github.com
+                        This program is free software: you can redistribute it and/or modify
+                        it under the terms of the GNU Lesser General Public License as published by
+                        the Free Software Foundation, either version 3 of the License, or
+                        (at your option) any later version.                    
+                        This program is distributed in the hope that it will be useful,
+                        but WITHOUT ANY WARRANTY; without even the implied warranty of
+                        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+                        GNU Lesser General Public License V3 for more details.                                       
+                        You should have received a copy of the GNU Lesser General Public License
+                        along with CMake C++ Console Application Wizard
+                        Licenses for all relevant software is located in the wizardLicense
+                        directory of this wizard."
+                    }
+                }
+            ]
+        },
+        {
+            "trDisplayName": "Define Class",
+            "trShortTitle": "Details",
+            "typeId": "Fields",
+            "data" :
+            [
+                {
+                    "name": "namespaceId",
+                    "trDisplayName": "Namespace",
+                    "mandatory": true,
+                    "type": "LineEdit",
+                    "data":
+                    {
+                        "trPlaceholder": "Namespace",
+                        "validator": "(?:[a-zA-Z_0-9]*)"
+                    }
+                },
+                {
+                    "name": "Class",
+                    "trDisplayName": "Class name",
+                    "mandatory": true,
+                    "type": "LineEdit",
+                    "data": {
+                        "trPlaceholder": "Class Identifier",
+                        "validator": "(?:[a-zA-Z_0-9]*|)"
+                    }
+                },
+                {
+                    "name": "spacer1",
+                    "type": "Spacer",
+                    "data": { "factor": 1}
+                },
+                {
+                    "name": "newDirectory",
+                    "trDisplayName": "New Directory",
+                    "mandatory": true,
+                    "type": "CheckBox",
+                    "data":
+                    {
+                        "checkedValue": "ON",
+                        "uncheckedValue": "", 
+                        "checked": ""
+                    }
+                },
+                {
+                    "name": "newDirectoryId",
+                    "trDisplayName": "New Directory\nIdentifier",
+                    "mandatory": "%{JS: value('newDirectory') === 'ON' ? true : false }", 
+                    "visible": "%{JS: value('newDirectory') === 'ON' ? true : false }", 
+                    "type": "LineEdit",
+                    "data":
+                    {
+                        "trText": "%{JS: value('namespaceId').toLowerCase() }",
+                        "validator": "(?:[a-zA-Z_0-9]*|)"
+                    }
+                },
+                {
+                    "name": "spacer3",
+                    "type": "Spacer",
+                    "data": { "factor": 1}
+                },
+                {
+                    "name": "usePCH",
+                    "trDisplayName": "Does this project use\na precompiled header file",
+                    "type": "CheckBox",
+                    "mandatory": false,
+                    "data":
+                    {
+                        "checkedValue": "ON",
+                        "uncheckedValue": "",
+                        "checked": "ON"
+                    }
+                },
+                {
+                    "name": "pchLocation",
+                    "trDisplayName": "Where are the\npch files?",
+                    "type": "PathChooser",
+                    "visible": "%{JS: value('usePCH') === 'ON' ? true : false }",
+                    "data":
+                    {
+                        "kind": "directory",
+                        "basePath": "%{InitialPath}", 
+                        "path": "%{InitialPath}"
+                    }
+                },
+
+                {
+                    "name": "HdrFileName",
+                    "type": "LineEdit",
+                    "trDisplayName": "Header file",
+                    "mandatory": true,
+                    "data": 
+                    { 
+                        "trText": "%{JS: Cpp.classToFileName(value('Class'), Util.preferredSuffix('text/x-c++hdr'))}" 
+                    }
+                },
+                {
+                    "name": "declarationPath",
+                    "type": "PathChooser",
+                    "trDisplayName": "Declaration\nDirectory",
+                    "mandatory": true,
+                    "data":
+                    {
+                        "kind": "directory",
+                        "basePath": "%{InitialPath}",
+                        "path": "%{InitialPath}"
+                    }
+                },
+                {
+                    "name": "SrcFileName",
+                    "type": "LineEdit",
+                    "trDisplayName": "Source file",
+                    "mandatory": true,
+                    "data": { "trText": "%{JS: Cpp.classToFileName(value('Class'), Util.preferredSuffix('text/x-c++src'))}" }
+                },
+                {
+                    "name": "definitionPath",
+                    "type": "PathChooser",
+                    "trDisplayName": "Definition\nDirectory",
+                    "mandatory": true,
+                    "data":
+                    {
+                        "kind": "directory",
+                        "basePath": "%{InitialPath}",
+                        "path": "%{InitialPath}"
+                    }
+                },
+                {
+                    "name": "TestPath",
+                    "trDisplayName": "Where is the test directory",
+                    "type": "PathChooser",
+                    "mandatory": true,
+                    "data":
+                    {
+                        "kind": "directory",
+                        "basePath": "%{InitialPath}",
+                        "path": "%{InitialPath}"
+                    }
+                }
+            ]
+        },
+        {
+            "trDisplayName": "Copy for CMakeLists.txt",
+            "trShortTitle": "Copy File Paths",
+            "typeId": "Fields",
+            "data":
+            [
+                {
+                    "name": "copyInstructions",
+                    "trDisplayName": "Copy Instructions",
+                    "type": "Label",
+                    "data":
+                    {
+                        "trText": "
+                            Highlight the text in the LineEdit box below.
+                            Copy in the normal way for your platform.
+                            Paste the copied text into the CMakeLists.txt in the 
+                            project directory. There is a section in this file marked FILES,
+                            this is the section you need to copy the text to. 
+                    }
+                },
+                {
+                    "name": "spacer2",
+                    "type":"Spacer",
+                    "data": { "factor": 1}
+                },
+                {
+                    "name": "copyPaths",
+                    "type": "LineEdit",
+                    "trDisplayName": "Paths for copying",
+                    "data":
+                    {
+                        "trText": "\"%{shortenedHeaderPath}\" \"%{shortenedSourcePath}\" \"test_%{HdrFileName}\" "
+                    }
+                }
+            ]
+        },
+        {
+            "trDisplayName": "Project Management",
+            "trShortTitle": "Summary",
+            "typeId": "Summary"
+        }
+    ],
+
+    "generators":
+    [
+        {
+            "typeId": "File",
+            "data":
+            [
+                {
+                    "source": "file.h",
+                    "target": "%{DeclarationPath}/%{HdrFileName}",
+                    "openInEditor": true,
+                    "options": [
+                        { "key": "Cpp:License:FileName", "value": "%{HdrFileName}" },
+                        { "key": "Cpp:License:ClassName", "value": "%{CN}" }
+                    ]
+                },
+                {
+                    "source": "file.cpp",
+                    "target": "%{DefinitionPath}/%{SrcFileName}",
+                    "openInEditor": true,
+                    "options": [
+                        { "key": "Cpp:License:FileName", "value": "%{SrcFileName}" },
+                        { "key": "Cpp:License:ClassName", "value": "%{CN}" }
+                    ]
+                },
+                {
+                "source": "test.h",
+                "target": "%{TestPath}/test_%{%{HdrFileName}",
+                "openInEditor":"false"
+                }
+            ]
+        }
+    ]
+}
