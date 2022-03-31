@@ -1,0 +1,2 @@
+%{Cpp:LicenseTemplate}\
+#include "../%{runhdr}"

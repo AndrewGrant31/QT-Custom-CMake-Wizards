@@ -1,0 +1,573 @@
+{
+    "version": 1,
+    "supportedProjectTypes": [ "CMakeProjectManager.CMakeProject" ],
+    "id": "AG.Plain Cmake Cpp Application with the GTest Framework",
+    "category": "AG.Custom Projects",
+    "trDescription": "C++ console application using the CMake build system and\nthe GTest testing framework from Google.Uses the C++17 standard as default.\nUtilises separate, user defined, declaration and definition directories, as well as a separate precompiled header (pch) directory. ",
+    "trDisplayName": "C++ CMake GTest Application",
+    "trDisplayCategory": "CMake Project",
+    "icon": "../../global/consoleapplication.png",
+    "iconKind": "Themed",
+    "enabled": "%{JS: value('Plugins').indexOf('CMakeProjectManager') >= 0}",
+
+    "options":
+    [
+        { "key": "BuildSystem", "value": "cmake" },        
+        { "key": "ProjectFile", "value": "%{ProjectDirectory}/CMakeLists.txt" },
+        { "key": "ProjectSource", "value": "%{ProjectDirectory}/%{ProjectName}" },
+        { "key": "GoogleTestLocation", "value": "C:/Tools/googletest/googletest-main/" },        
+        
+        { "key": "licensesSource", "value": "wizard_licenses" },
+        { "key": "licenseDestination", "value": "%{ProjectDirectory}/wizardLicenses" },
+        { "key": "licenseFile", "value": "%{JS: Util.fileName(value('file'), value('.txt'))}" },
+        { "key": "licenseTarget", "value": "%{licenseDestination}/%{licenseFile}" },     
+        
+        { "key": "chosenLicense", "value": "%{JS: '%{license}' + '.txt'}" },
+        { "key": "chosenLicenseTarget", "value": "%{ProjectDirectory}/license/%{chosenLicense}" },
+ 
+        { "key": "CMakeFile", "value": "%{ProjectDirectory}/CMakeLists.txt" },
+        { "key": "pch", "value": "%{JS: 'pch.' + Util.preferredSuffix('text/x-c++hdr')}" },
+        { "key": "pchsrc", "value": "%{JS: 'pch.' + Util.preferredSuffix('text/x-c++src')}" },
+        
+        { "key": "runhdr", "value": "%{JS: '%{DeclarationDirectory}/run.' + Util.preferredSuffix('text/x-c++hdr')}" },
+        { "key": "runsrc", "value": "%{JS: '%{DefinitionDirectory}/run.' + Util.preferredSuffix('text/x-c++src')}" },
+
+        { "key": "appnamehdr", "value": "%{JS: 'appname.' + Util.preferredSuffix('text/x-c++hdr')}" },
+        { "key": "versionhdr", "value": "%{JS: 'version.' + Util.preferredSuffix('text/x-c++hdr')}" },   
+        { "key": "appnamehdr_test", "value": "%{JS: 'appname' + '_test.' + Util.preferredSuffix('text/x-c++hdr')}" },
+        { "key": "versionhdr_test", "value": "%{JS: 'version' + '_test.' + Util.preferredSuffix('text/x-c++hdr')}" },            
+
+        { "key": "appnamehdr_location", "value": "%{DeclarationDirectory}/appDetails/%{appnamehdr}" },
+        { "key": "appnamesrc_location", "value": "%{JS: '%{DefinitionDirectory}/appDetails/appname.' + Util.preferredSuffix('text/x-c++src') }" },
+        { "key": "versionhdr_location", "value": "%{DeclarationDirectory}/appDetails/%{versionhdr}" },
+        { "key": "versionsrc_location", "value": "%{JS: '%{DefinitionDirectory}/appDetails/version.' + Util.preferredSuffix('text/x-c++src') }" },
+
+        { "key": "pchDirectoryName", "value": "%{JS: value('LocateInDeclarationDirectory') === '' ? '%{pchDirectory_Identifier}' : '%{DeclarationDirectory}' }" },
+               
+        { "key": "pchHeaderDirectory", "value": "%{JS: value('LocateInDeclarationDirectory') === '' ? '%{pchDirectoryName}' : '%{DeclarationDirectory}' }" },
+        { "key": "pchSourceDirectory", "value": "%{JS: value('LocateInDeclarationDirectory') === '' ? '%{pchDirectoryName}' : '%{DefinitionDirectory}' }" },
+        
+        { "key": "pchHeader", "value": "%{ProjectName}/%{pchHeaderDirectory}/%{pch}" },
+        { "key": "pchSource", "value": "%{ProjectName}/%{pchSourceDirectory}/%{pchsrc}"},        
+ 
+        { "key": "configFile", "value": "%{JS: 'config.' + Util.preferredSuffix('text/x-c++hdr') }" },
+
+        { "key": "VersionMajor", "value": "0" },
+        { "key": "VersionMinor", "value": "0" },
+        { "key": "VersionPatch", "value": "1" },
+        { "key": "VersionTweak", "value": "0" },
+        
+        { "key": "UsingCPP11", "value": "%{JS: value('standard') === '11' ? 'ON' : ''}" },      
+   
+        { "key": "CPP11Unique_Ptr", "value": "%{JS: value('standard') === '11' ? 'unique_ptr' : 'make_unique' }" },
+        { "key": "CPP11EntryPoint", "value": "%{JS: value('standard') === '11' ? 'int main(int argc, char* argv[])' : '' }" },
+        { "key": "CPP11ExitPoint", "value": "%{JS: value('standard') === '11' ? 'return 0;' : '' }" },
+  
+        { "key": "AppEntryFile", "value": "%{JS: value('AppEntry') === '' ? 'main' : '%{ProjectName}' }"},
+        { "key": "CppFileName", "value": "%{JS: '%{AppEntryFile}.' + Util.preferredSuffix('text/x-c++src')}"}
+        
+    ],
+
+    "pages":
+    [
+        {
+            "trDisplayName": "Accept License",
+            "trShortTitle": "License",
+            "typeId":"Fields",
+            "data":
+            [
+                {
+                    "name": "licenseLabel",
+                    "trDisplayName": " ",
+                    "span": false,
+                    "type": "Label",
+                    "data":
+                    {
+                        "wordWrap": true,
+                        "trText": "Licensed using the LGPL v3 license.\nClicking \"Next\" assumes acceptance of the license"
+                    }
+                },
+                {
+                    "name": "readLicense",
+                    "trDisplayName": "Read the LGPL V3 license summary",
+                    "type": "CheckBox",
+                    "data":
+                    {
+                        "checkedValue": "ON",
+                        "uncheckedValue": "",
+                        "checked": ""
+                    }
+                },
+
+                 {
+                    "name": "license",
+                    "type": "Label",
+                    "span": false,
+                    "visible": "%{JS: value('readLicense') == 'ON' ? true : false}",
+                    "data":
+                    {
+                        "wordWrap": true,
+                        "trText": "\tThis software enables the creation of a C++ console application. 
+                        Copyright (C) 2021  Andrew Grant, contact via 
+                        andrewgrant31@users.noreply.github.com
+                        This program is free software: you can redistribute it and/or modify
+                        it under the terms of the GNU Lesser General Public License as published by
+                        the Free Software Foundation, either version 3 of the License, or
+                        (at your option) any later version.                    
+                        This program is distributed in the hope that it will be useful,
+                        but WITHOUT ANY WARRANTY; without even the implied warranty of
+                        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+                        GNU Lesser General Public License V3 for more details.                                       
+                        You should have received a copy of the GNU Lesser General Public License
+                        along with CMake C++ Console Application Wizard
+                        Licenses for all relevant software is located in the wizardLicense
+                        directory of this wizard."
+                    }
+                }
+            ]
+        },
+        {
+            "trDisplayName": "Project Location",
+            "trShortTitle": "Location",
+            "typeId": "Project"
+        },
+        {
+            "trDisplayName": "Configure Project",
+            "trShortTitle": "Configure",
+            "typeId": "Fields",
+            "data":
+            [
+                {
+                    "name": "AppEntry",
+                    "trDisplayName": "Use Project Name for the application entry file",
+                    "mandatory": false,
+                    "trToolTip": "Do you wish to use the application (project) name\nas the entry point for this application?\nor, use the standard file name of \"main\" ",
+                    "type": "CheckBox",
+                    "data":
+                    {
+                        "checkedValue": "ON",
+                        "uncheckedValue": "",
+                        "checked": "ON"
+                    }
+
+                },
+                {
+                    "name": "UsePCH",
+                    "trDisplayName": "Use PCH file",
+                    "mandatory": false,
+                    "type":"CheckBox",
+                    "data":
+                    {
+                        "checkedValue": "ON",
+                        "uncheckedValue": "",
+                        "checked": "ON"
+                    }
+                },
+                {
+                    "name": "spacer1",
+                    "type": "Spacer",
+                    "data": { "factor": 1}
+                },
+                {
+                    "name": "standard",
+                    "trDisplayName": "Choose C++ standard\nDefaults to C++17",
+                    "mandatory": false,
+                    "type": "ComboBox",
+                    "data":
+                    {
+                        "items":
+                        [
+                            {
+                                "trKey": " ",
+                                "value": "17"
+                            },
+                            {
+                                "trKey": "C++11",
+                                "value": "11"
+                            },
+                            {
+                                "trKey": "C++14",
+                                "value": "14"
+                            },
+                            {
+                                "trKey": "C++17",
+                                "value": "17"
+                            },
+                            {
+                                "trKey": "C++20",
+                                "value": "20"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "trDisplayName": "Source Code Locations",
+            "trShortTitle": "Locations",
+            "typeId": "Fields",
+            "data":
+            [
+                {
+                    "name": "DeclarationDirectory",
+                    "trDisplayName": "Declaration Directory Identifier",
+                    "trToolTip": "Click the dropdown box to choose an identifier for the declaration directory",
+                    "type": "ComboBox",
+                    "data":
+                    {
+                        "items":
+                        [
+                            {
+                                "trKey": "inc",
+                                "value": "inc"
+                            },
+                            {
+                                "trKey": "Inc",
+                                "value": "Inc"
+                            },
+                            {
+                                "trKey": "include",
+                                "value": "include"
+                            },
+                            {
+                                "trKey": "Include",
+                                "value": "Include"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "DefinitionDirectory",
+                    "trDisplayName": "Definition Directory Identifier",
+                    "trToolTip": "Click the dropdown box to choose the identifier for the definition directory\nDefaults to \"src\"",
+                    "type": "ComboBox",
+                    "data":
+                    {
+                        "items":
+                        [
+                            {
+                                "trKey": "src",
+                                "value": "src"
+                            },
+                            {
+                                "trKey": "Src",
+                                "value": "Src"
+                            },
+                            {
+                                "trKey": "source",
+                                "value": "source"
+                            },
+                            {
+                                "trKey": "Source",
+                                "value": "Source"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "spacer2",
+                    "type": "Spacer",
+                    "data": { "factor": 1}
+                },
+                {
+                    "name": "LocateInDeclarationDirectory",
+                    "trDisplayName": "Put the pch file in the Declaration Directory",
+                    "type": "CheckBox",
+                    "data": 
+                    {
+                        "checkedValue": "ON",
+                        "uncheckedValue": "",
+                        "checked": ""
+                    }
+                },
+                {
+                    "name": "pchDirectory_Identifier",
+                    "trDisplayName": "Precompiled File Directory Identifier",
+                    "trToolTip": "Identifier for precompiled header file directory, if left empty default, pch, is used",
+                    "type": "LineEdit",
+                    "visible":"%{JS: value('UsePCH') === 'ON' && value('LocateInDeclarationDirectory') === ''}",
+                    "data":
+                    {
+                        "trText": "pch",
+                        "validator": "(?:[a-zA-Z_]*|)"
+                    }
+                },
+                {
+                    "name": "pchDirectory",
+                    "trDisplayName": "Location for precompiled header file",
+                    "trToolTip": "Give a location, within the project, for the precompiled header file. The default is pch",
+                    "type": "PathChooser",
+                    "visible": "%{JS: value('UsePCH') === 'ON' && value('LocateInDeclarationDirectory') === ''}",
+                    "data":
+                    {
+                        "kind": "directory",
+                        "basePath": "%{ProjectSource}",
+                        "path": "%{ProjectSource}"
+                    }
+                },
+                {
+                    "name": "spacer3",
+                    "type": "Spacer",
+                    "data": { "factor": 1}
+                },
+                {
+                    "name": "GoogleTestFramework",
+                    "trDisplayName": "Location of Google Test Framework",
+                    "mandatory": true,
+                    "type": "PathChooser",
+                    "data":
+                    {
+                        "kind": "directory",
+                        "basePath": "%{JS: value('GoogleTestLocation') === '' ? 'InitialPath' : 'GoogleTestLocation'}", 
+                        "path": "%{%{JS: value('GoogleTestLocation') === '' ? 'InitialPath' : 'GoogleTestLocation'}}"
+                    }
+                }
+            ]
+        },
+        {
+            "trDisplayName": "License, Entry and Exit Points",
+            "trShortTitle": "License, etc",
+            "typeId": "Fields",
+            "data":
+            [
+                {
+                    "name": "license",
+                    "trDisplayName": "License",
+                    "mandatory": false,
+                    "trToolTip": "Use the dropdown box to select the license you wish to use\nor to choose your own license\nPlease see the readme for instructions for using an unlisted license",
+                    "type": "ComboBox",
+                    "data":
+                    {
+                        "items":
+                        [
+                            {
+                                "trKey": "GPL V2",
+                                "value": "gpl_v2"
+                            },
+                            {
+                                "trKey": "GPL V3",
+                                "value": "gpl_v3"
+                            },
+                            {
+                                "trKey": "LGPL V2",
+                                "value": "lgpl_v2"
+                            },
+                            {
+                                "trKey": "LGPL V3",
+                                "value": "lgpl_v3"
+                            },
+                            {
+                                "trKey": "MIT",
+                                "value": "mit"
+                            },
+                            {
+                                "trKey": "APACHE 2",
+                                "value": "apache2"
+                            },
+                            {
+                                "trKey": "Own License",
+                                "value": "own_license"
+                            },
+                            {
+                                "trKey": "NONE",
+                                "value": ""
+                            }
+                        ]
+                    }                    
+                },
+                {
+                    "name": "spacer4",
+                    "type": "Spacer",
+                    "data": { "factor": 1}
+                },
+                {
+                    "name": "entryPoint",
+                    "trDisplayName": "Define the main function",
+                    "mandatory": false,
+                    "trToolTip": "Click the dropdown box to select the entry point text.\nDefaults to the standard \"int main()\"",
+                    "visible": "%{JS: value('standard') !== '11' ? true : false}",
+                    "type": "ComboBox",
+                    "data":
+                    {
+                        "items":
+                        [
+                            {
+                                "trKey": "int main ( )",
+                                "value": "int main ( )"
+                            },
+                            {
+                                "trKey": "int main ( int argc, char* argv [ ] )",
+                                "value": "int main ( int argc, char* argv [ ] )"
+                            },
+                            {
+                                "trKey": "auto main ( ) -> int",
+                                "value": "auto main ( ) -> int"
+                            },
+                            {
+                                "trKey": "auto main ( int argc, char* argv [ ] ) -> int",
+                                "value": "auto main ( int argc, char* argv [ ] ) -> int"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "exitPoint",
+                    "trDisplayName": "Exit Application",
+                    "mandatory": false,
+                    "trToolTip": "Click the dropdown box to select the exit point text.\nDefaults to the standard \"return 0;\" ",
+                    "visible":"%{JS: value('standard') !== '11' ? true : false}",
+                    "type": "ComboBox",
+                    "data":
+                    {
+                        "items":
+                        [
+                            {
+                                "trKey": "return 0;",
+                                "value": "return 0;"
+                            },
+                            {
+                                "trKey": "return EXIT_SUCCESS;",
+                                "value": "return EXIT_SUCCESS;"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "trDisplayName": "Kit Selection",
+            "trShortTitle": "Kits",
+            "typeId": "Kits",
+            "enabled": "%{JS: ! %{IsSubproject}}",
+            "data": { "projectFilePath": "%{ProjectFile}" }
+        },
+        {
+            "trDisplayName": "Project Management",
+            "trShortTitle": "Summary",
+            "typeId": "Summary"
+        }
+    ],
+    "generators":
+    [
+        {
+            "typeId": "File",
+            "data":
+            [
+                {
+                    "source": "%{licensesSource}", 
+                    "target": "%{licenseTarget}",
+                    "openInEditor": false
+                },
+                {
+                    "source": "CMakeLists.txt",
+                    "openAsProject": true,
+                    "condition": "%{JS: '%{BuildSystem}' === 'cmake'}"
+                },
+                {
+                    "source": "CMake_Management.txt",
+                    "target": "%{ProjectSource}/CMakeLists.txt",
+                    "openInEditor":"false"
+                },
+                {
+                "source": "CMake_Test.txt",
+                "target": "%{ProjectDirectory}/tests_%{ProjectName}/CMakeLists.txt",
+                "openInEditor":"false"
+                },
+                {
+                    "source": "licenses/%{chosenLicense}",
+                    "target": "%{ProjectDirectory}/license/%{chosenLicense}",
+                    "openInEditor": false
+                },
+                {
+                    "source": "pch.h",
+                    "target": "%{pchHeader}",                   
+                    "openInEditor": false,
+                    "condition": "%{JS: '%{UsePCH}' === 'ON'}"
+                },
+                {
+                    "source": "pch.cpp",
+                    "target": "%{pchSource}",
+                    "openInEditor": false,
+                    "condition": "%{JS: '%{UsePCH}' === 'ON'}"
+                },
+                {
+                    "source": "config.h.in",
+                    "target": "%{ProjectDirectory}/config.h.in",
+                    "openInEditor": false
+                },
+                {
+                    "source": "main.cpp",
+                    "target": "%{ProjectSource}/%{CppFileName}",
+                    "openInEditor": true
+                },
+                {
+                    "source": "test_main.cpp",
+                    "target": "%{ProjectDirectory}/tests_%{ProjectName}/test_%{ProjectName}.cpp",
+                    "openInEditor":"false"
+                },
+                {
+                "source": "runtests.h",
+                "target": "%{ProjectDirectory}/tests_%{ProjectName}/runtests.h",
+                "openInEditor":"false"
+                },
+                {
+                    "source": "run.h",
+                    "target": "%{ProjectSource}/%{runhdr}",
+                    "openInEditor": false
+                },
+                {
+                    "source": "run.cpp",
+                    "target": "%{ProjectSource}/%{runsrc}",
+                    "openInEditor": false
+                },
+                {
+                    "source": "appname.h",
+                    "target": "%{ProjectSource}/%{appnamehdr_location}",
+                    "openInEditor": false
+                },
+                {
+                    "source": "appname.cpp",
+                    "target": "%{ProjectSource}/%{appnamesrc_location}",
+                    "openInEditor": false
+                },
+                {
+                    "source": "version.h",
+                    "target": "%{ProjectSource}/%{versionhdr_location}",
+                    "openInEditor": false
+                },
+                {
+                    "source": "version.cpp",
+                    "target": "%{ProjectSource}/%{versionsrc_location}",
+                    "openInEditor": false
+                },
+                {
+                "source": "test.h",
+                "target": "%{ProjectDirectory}/tests_%{ProjectName}/%{versionhdr_test}",
+                "openInEditor":"false",
+                "options":
+                    [
+                        { "key": "CN", "value": "Version" },
+                        { "key": "namespaceId", "value": "AppDetails" },
+                        { "key": "filename", "value": "%{versionhdr}" }                    
+                    ]
+                },
+                {
+                    "source": "test.h",
+                    "target": "%{ProjectDirectory}/tests_%{ProjectName}/%{appnamehdr_test}",
+                    "openInEditor":"false",
+                    "options":
+                        [
+                            { "key": "CN", "value": "AppName" },
+                            { "key": "namespaceId", "value": "AppDetails" },
+                            { "key": "filename", "value": "%{appnamehdr}" }                    
+                        ]
+                    },
+                {
+                    "source": "../git.ignore",
+                    "target": ".gitignore",
+                    "condition": "%{JS: ! %{IsSubproject} && '%{VersionControl}' === 'G.Git'}"
+                }
+            ]
+        }
+    ]
+}
