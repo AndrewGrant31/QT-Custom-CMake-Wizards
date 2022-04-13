@@ -78,7 +78,8 @@ directory\folder and put the custom wizards in the relevant directory [classes][
 Qt Creator is not, as far as I know, very forgiving if there are two directories with the same name (one of which will usually  
 be accompanied with -Copy). Qt Creator, again, as far I know, prefers all directories to have unique identifiers (names)._  
  
-* Linux and macOS: $HOME/.config/QtProject/qtcreator/templates/wizards
+* Linux and macOS: 
+* "$HOME/.config/QtProject/qtcreator/templates/wizards"
 
 You may need to create a separate folder (with the identifier cmakecpp) in the relevant directory:
 
