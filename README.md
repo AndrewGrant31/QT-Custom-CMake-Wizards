@@ -74,7 +74,7 @@ Failing that open a command prompt and type in echo %UserName% and your username
 
 C:\Qt\Tools\QtCreator\share\qtcreator\templates\wizards\\[classes][projects]  
 _Assuming that you followed the default installation recommendations. If not, locate the \share\qtcreator\templates\wizards\  
-directory\folder and put the cusomt wizards in the relevant directory [classes][projects] - rename them as required.  
+directory\folder and put the custom wizards in the relevant directory [classes][projects] - rename them as required.  
 Qt Creator is not, as far as I know, very forgiving if there are two directories with the same name (one of which will usually  
 be accompanied with -Copy). Qt Creator, again, as far I know, prefers all directories to have unique identifiers (names)._  
  
