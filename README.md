@@ -98,7 +98,7 @@ They have been tested using Qt Creator on Windows 10 and 11 and on Ubuntu 21.04 
 ## Updates
 I will, of course, try to update the wizards in as timely manner as I can. I will not guarantee, nor accept demands for, immediate or fast turn arounds. 
 If you wish for a fast turn around, you should implement the changes yourself. This way you can guarantee that what you have is what you want or need. 
-Just copy the wizard and approariate files and folders to a new folder, in the correct directory. Change the sections:
+Just copy the wizard and appropriate files and folders to a new folder, in the correct directory. Change the sections:
 
 *     "supportedProjectTypes": [ ],  
 *     "id": "AG.Class",  
