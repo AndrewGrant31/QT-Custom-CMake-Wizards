@@ -15,7 +15,7 @@
         { "key": "BuildSystem", "value": "cmake" },        
         { "key": "ProjectFile", "value": "%{ProjectDirectory}/CMakeLists.txt" },
         { "key": "ProjectSource", "value": "%{ProjectDirectory}/%{ProjectName}" },
-        { "key": "GoogleTestLocation", "value": "C:/Tools/googletest/googletest-main/" },        
+        { "key": "GoogleTestLocation", "value": "" },        
         
         { "key": "licensesSource", "value": "wizard_licenses" },
         { "key": "licenseDestination", "value": "%{ProjectDirectory}/wizardLicenses" },
