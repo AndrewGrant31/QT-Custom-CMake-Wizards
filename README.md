@@ -95,11 +95,6 @@ Just copy the wizard and approariate files and folders to a new folder, in the c
 *     "trDisplayCategory": "Basic C/C++",  
  
  at the start of the wizard and have at it! :D 
- 
- ## Notes 
- I've just discovered I made a mistake wih naming the custom project - it is set to project. Not a terribly good name, you will more than likely find it useful to change the name of the project folder (directory) to something more understandable. 
-Sorry for this rather simple and basic error. :( 
 
-(The start of each wizard is basically the same, so just change what you need and enoy yourself with whatever changes you want to make)
 
 
