@@ -14,14 +14,14 @@ You can set the C++ standard you wish from one of four (4) options: C++1, C++14,
 If no standard is set the project will default to C++17. 
 
 You also get to choose the license you wish to use for your project. The available optins are:
-* GPL V2,
-* GPL V3,
-* LGPL V2,
-* LGPL V3,
-* MIT,
-* APACHE 2,
-* Own License,
-* None.
+*     GPL V2,
+*     GPL V3,
+*     LGPL V2,
+*     LGPL V3,
+*     MIT,
+*     APACHE 2,
+*     Own License,
+*     None.
 
 If you wish to use your license, place a text copy in the wizard_license folder of the wizard directory. 
 You can alter the option by changing the text in the wizard json file to reflect your custom license. 
@@ -29,14 +29,14 @@ Just change the option "Own License" with a simple descriptor of your choosing.
 
 You can also set the application entry and exit points. 
 The options available are:
-* int main(),
-* int main(int argc, char* argv[],
-* auto main() -> int,
-* auto main int argc, char* argv[]) -> int
+*     int main(),
+*     int main(int argc, char* argv[],
+*     auto main() -> int,
+*     auto main int argc, char* argv[]) -> int
 
 The available exit points are:
-* return 0,
-* turn EXIT_SUCCESS
+*     return 0,
+*     turn EXIT_SUCCESS
 
 There are two CMakeLists.txt files. A top level CMakeLists.txt which sets the project name, C++ standard, application (project) version - set to 0.0.1.0
 and a project level CMakeLists.txt which sets the include files, configures the config file and creates the executable. This is a a very simple CMakeLists.txt file. 
@@ -60,11 +60,11 @@ The wizard does not check for name clashes or correctness, other than the normal
 
 These two wizards should be placed in the approrpriate locations for Qt Creator wizards. You can find the relevant places on the Qt Creator website (https://doc.qt.io/qtcreator/creator-project-wizards.html) 
 The relevant directories are listed, on the web page as being (as of January 2022): 
-* Windows: share\qtcreator\templates\wizards
-* Linux: share/qtcreator/templates/wizards
-* macOS: Qt Creator.app/Contents/Resources/templates/wizards
+*     Windows: share\qtcreator\templates\wizards
+*     Linux: share/qtcreator/templates/wizards
+*     macOS: Qt Creator.app/Contents/Resources/templates/wizards
 ** Local user's settings directory:
-* Windows: %APPDATA%\QtProject\qtcreator\templates\wizards  
+*     Windows: %APPDATA%\QtProject\qtcreator\templates\wizards  
  _The Windows location is: C:\Users\%UserName%\AppData\Roaming\QtProject\qtcreator\templates\wizards\[classes][projects]  
  %UserName% is your username that you log into and use Windows as... 
 if you are unsure, look in the File Explorer for your login name (there's a directory/folder, under Users with your username.  
@@ -72,7 +72,7 @@ Failing that open a command prompt and type in echo %UserName% and your username
  
  You may find that Qt Creator doesn't pick up the new custom wizards, easily or at all. In which case just move them to:  
 
-C:\Qt\Tools\QtCreator\share\qtcreator\templates\wizards\\[classes][projects]  
+*     C:\Qt\Tools\QtCreator\share\qtcreator\templates\wizards\\[classes][projects]  
 _Assuming that you followed the default installation recommendations. If not, locate the \share\qtcreator\templates\wizards\  
 directory\folder and put the custom wizards in the relevant directory [classes][projects] - rename them as required.  
 Qt Creator is not, as far as I know, very forgiving if there are two directories with the same name (one of which will usually  
