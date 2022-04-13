@@ -113,7 +113,7 @@ path.
 For my project I use, for example, _C:\Tools\GTest_ and place googletest-main within this directory. This is the location that is copied into  
 the value on Line 18. 
 Which should now read:  
-_{ "key": "GoogleTestLocation", "value": "Your defualt location for googletest" },_
+_{ "key": "GoogleTestLocation", "value": "Your default location for googletest" },_
 
 Do not compile googletest - the normal compilation process, utilising cmake, will do this for you - for the individual project. It doesn't take  
 very long and only does a full compile the once on the first compilation of the project; after this it just compiles the relevant sections of code  
