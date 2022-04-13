@@ -64,7 +64,17 @@ The relevant directories are listed, on the web page as being (as of January 202
 * Linux: share/qtcreator/templates/wizards
 * macOS: Qt Creator.app/Contents/Resources/templates/wizards
 ** Local user's settings directory:
-* Windows: %APPDATA%\QtProject\qtcreator\templates\wizards
+* Windows: %APPDATA%\QtProject\qtcreator\templates\wizards  
+ The Windows location is: C:\Users\%UserName%\AppData\Roaming\QtProject\qtcreator\templates\wizards\[classes][projects]  
+ 
+ You may find that Qt Creator doesn't pick up the new custom wizards, easily or at all. In which case just move them to:  
+
+C:\Qt\Tools\QtCreator\share\qtcreator\templates\wizards\[classes][projects]  
+Assuming that you followed the default installation recommendations. If not, locate the \share\qtcreator\templates\wizards\  
+directory\folder and put the cusomt wizards in the relevant directory [classes][projects] - rename them as required.  
+Qt Creator is not, as far as I know, very forgiving if there are two directories with the same name (one of which will usually  
+be accompanied with -Copy). Qt Creator, again, as far I know, prefers all directories to have unique identifiers (names).  
+ 
 * Linux and macOS: $HOME/.config/QtProject/qtcreator/templates/wizards
 
 You may need to create a separate folder (with the identifier cmakecpp) in the relevant directory:
@@ -72,7 +82,7 @@ You may need to create a separate folder (with the identifier cmakecpp) in the r
 ** project/cmakecpp  
 ** class/cmakecpp
 
-You may need to restart Qt Creator. 
+You may need to restart Qt Creator, or do a factory reset (Probably easier to just restart Qt Creator)
 If either is not picked up by Qt Creator, try starting Qt Creator from the commandline, using qtcreator -customwizard-verbose as the command.
 If this fails, please ensure that the wizards are placed correctly in the relevant directories. The project wizard and associated files and folders goes in the project directory; the class wizard goes in the classes directory.
 
