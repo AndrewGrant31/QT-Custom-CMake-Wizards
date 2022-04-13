@@ -100,6 +100,25 @@ If you do not wish to accept the license, delete the wizards from the relevant f
 There is, literally, no guarantee of merchantability and fitness for a particular purpose; there is also, no guarantee with these wizards. 
 They have been tested using Qt Creator on Windows 10 and 11 and on Ubuntu 21.04 and OpenSuse Tumbleweed (as of January 2022). They have, currently, not been tested or used on any Apple Mac computer. 
 
+## Notes - GTest
+With the project "cmakegtestcppconsole" you will, almost certainly, want to change the default location for GTest. 
+In the relavant wizard.json file (in the cmakegtestcppconsole directory) locate and change the line 18 so that instead of reading  
+_C:/Tools/googletest/googletest-main/_ or is an empty field  
+it should display where you have placed GTest.
+
+To use Gtest with this project template, download the code (google/googletest from github) (I have found using the zip file the best way)  
+and extract or clone it to a default location on your hard drive.  
+Copy the path to the place where you have put GTest/googletest-main and write or paste it between the empty quotes or replace the current  
+path. 
+For my project I use, for example, _C:\Tools\GTest_ and place googletest-main within this directory. This is the location that is copied into  
+the value on Line 18. 
+Which should now read:  
+_{ "key": "GoogleTestLocation", "value": "Your defualt location for googletest" },_
+
+Do not compile googletest - the normal compilation process, utilising cmake, will do this for you - for the individual project. It doesn't take  
+very long and only does a full compile the once on the first compilation of the project; after this it just compiles the relevant sections of code  
+as and when needed. 
+
 ## Updates
 I will, of course, try to update the wizards in as timely manner as I can. I will not guarantee, nor accept demands for, immediate or fast turn arounds. 
 If you wish for a fast turn around, you should implement the changes yourself. This way you can guarantee that what you have is what you want or need. 
