@@ -27,7 +27,7 @@ If you wish to use your license, place a text copy in the wizard_license folder 
 You can alter the option by changing the text in the wizard json file to reflect your custom license. 
 Just change the option "Own License" with a simple descriptor of your choosing.
 
-You can also set the applicatino entry and exit points. 
+You can also set the application entry and exit points. 
 The options available are:
 * int main(),
 * int main(int argc, char* argv[],
