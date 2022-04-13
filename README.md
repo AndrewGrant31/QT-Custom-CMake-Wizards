@@ -79,7 +79,7 @@ Qt Creator is not, as far as I know, very forgiving if there are two directories
 be accompanied with -Copy). Qt Creator, again, as far I know, prefers all directories to have unique identifiers (names)._  
  
 * Linux and macOS: 
-* "$HOME/.config/QtProject/qtcreator/templates/wizards"
+*      $HOME/.config/QtProject/qtcreator/templates/wizards
 
 You may need to create a separate folder (with the identifier cmakecpp) in the relevant directory:
 
