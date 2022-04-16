@@ -255,11 +255,6 @@
                 {
                     "name": "spacer2",
                     "type": "Spacer",
-                    "data": { "factor": 1}
-                },
-                {
-                    "name": "spacer3",
-                    "type": "Spacer",
                     "data": { "factor": 2}
                 },
                 {
