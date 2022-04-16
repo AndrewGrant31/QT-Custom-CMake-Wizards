@@ -15,7 +15,7 @@
         { "key": "BuildSystem", "value": "cmake" },        
         { "key": "ProjectFile", "value": "%{ProjectDirectory}/CMakeLists.txt" },
         { "key": "ProjectSource", "value": "%{ProjectDirectory}/%{ProjectName}" },
-        { "key": "GoogleTestLocation", "value": "" },        
+        { "key": "GoogleTestLocation", "value": "C:/Tools/GTest/googletest-main/" },        
         
         { "key": "licensesSource", "value": "wizard_licenses" },
         { "key": "licenseDestination", "value": "%{ProjectDirectory}/wizardLicenses" },
@@ -98,8 +98,7 @@
                         "checked": ""
                     }
                 },
-
-                 {
+                {
                     "name": "license",
                     "type": "Label",
                     "span": false,
@@ -108,20 +107,20 @@
                     {
                         "wordWrap": true,
                         "trText": "\tThis software enables the creation of a C++ console application. 
-                        Copyright (C) 2021  Andrew Grant, contact via 
-                        andrewgrant31@users.noreply.github.com
-                        This program is free software: you can redistribute it and/or modify
-                        it under the terms of the GNU Lesser General Public License as published by
-                        the Free Software Foundation, either version 3 of the License, or
-                        (at your option) any later version.                    
-                        This program is distributed in the hope that it will be useful,
-                        but WITHOUT ANY WARRANTY; without even the implied warranty of
-                        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-                        GNU Lesser General Public License V3 for more details.                                       
-                        You should have received a copy of the GNU Lesser General Public License
-                        along with CMake C++ Console Application Wizard
-                        Licenses for all relevant software is located in the wizardLicense
-                        directory of this wizard."
+                    Copyright (C) 2021  Andrew Grant, contact via 
+                    andrewgrant31@users.noreply.github.com
+                    This program is free software: you can redistribute it and/or modify
+                    it under the terms of the GNU Lesser General Public License as published by
+                    the Free Software Foundation, either version 3 of the License, or
+                    (at your option) any later version.                    
+                    This program is distributed in the hope that it will be useful,
+                    but WITHOUT ANY WARRANTY; without even the implied warranty of
+                    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+                    GNU Lesser General Public License V3 for more details.                                       
+                    You should have received a copy of the GNU Lesser General Public License
+                    along with CMake C++ Console Application Wizard
+                    Licenses for all relevant software is located in the wizardLicense
+                    directory of this wizard."
                     }
                 }
             ]
@@ -309,7 +308,15 @@
                     "name": "spacer3",
                     "type": "Spacer",
                     "data": { "factor": 1}
-                },
+                }
+            ]
+        },
+        {
+            "trDisplayName": "GoogleTest Framework",
+            "trShortTitle": "GoogleTest",
+            "typeId": "Fields",
+            "data":
+            [
                 {
                     "name": "GoogleTestFramework",
                     "trDisplayName": "Location of Google Test Framework",
@@ -320,6 +327,42 @@
                         "kind": "directory",
                         "basePath": "%{JS: value('GoogleTestLocation') === '' ? 'InitialPath' : 'GoogleTestLocation'}", 
                         "path": "%{%{JS: value('GoogleTestLocation') === '' ? 'InitialPath' : 'GoogleTestLocation'}}"
+                    }
+                },
+                {
+                    "name": "ViewGTestInstructions",
+                    "trDisplayName": "View instructions for making GTest location variable persistent",
+                    "type": "CheckBox",
+                    "data": 
+                    {
+                        "checkedValue": "ON",
+                        "uncheckedValue": "",
+                        "checked": ""
+                    }
+                },
+                {
+                    "name": "PersistentGTest",
+                    "type": "Label",
+                    "span": false,
+                    "visible": "%{JS: value('ViewGTestInstructions') == 'ON' ? true : false}",
+                    "data":
+                    {
+                        "wordWrap": true,
+                        "trText": "
+                        Download or clone the GoogleTest framework from github.com.
+                        Extract or copy the framework to a safe location on your hard drive.
+                        Locate googletest-main in this location.
+                        Copy the path to this location as plain text.
+                        Locate line 18 in the custom wizard for this project. 
+                        Paste, or write, the location of googletest-main in to the value field. 
+                        EG: 
+                        { \"key\": \"GoogleTestLocation\", \"value\": \"C:/GTest/googletest-main/\" },
+                        Make sure to place a forward slash at the end of the path string. 
+                        Do not use double back slashes for the path dividers - only use single
+                        forward slashes.
+                        Reload (factory reset) or restart the Qt Creator IDE 
+                        The location of the GoogleTest framework should now appear in the
+                        GoogleTest Framework field. "
                     }
                 }
             ]
@@ -563,8 +606,8 @@
                         ]
                     },
                 {
-                    "source": "../git.ignore",
-                    "target": ".gitignore",
+                    "source": "git.ignore",
+                    "target": "%{ProjectDirectory}/.gitignore",
                     "condition": "%{JS: ! %{IsSubproject} && '%{VersionControl}' === 'G.Git'}"
                 }
             ]
