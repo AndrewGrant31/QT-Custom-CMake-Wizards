@@ -150,18 +150,7 @@
                     }
 
                 },
-                {
-                    "name": "UsePCH",
-                    "trDisplayName": "Use PCH file",
-                    "mandatory": false,
-                    "type":"CheckBox",
-                    "data":
-                    {
-                        "checkedValue": "ON",
-                        "uncheckedValue": "",
-                        "checked": "ON"
-                    }
-                },
+
                 {
                     "name": "spacer1",
                     "type": "Spacer",
@@ -269,6 +258,23 @@
                     "data": { "factor": 1}
                 },
                 {
+                    "name": "spacer3",
+                    "type": "Spacer",
+                    "data": { "factor": 2}
+                },
+                {
+                    "name": "UsePCH",
+                    "trDisplayName": "Use PCH file",
+                    "mandatory": false,
+                    "type":"CheckBox",
+                    "data":
+                    {
+                        "checkedValue": "ON",
+                        "uncheckedValue": "",
+                        "checked": "ON"
+                    }
+                },
+                {
                     "name": "LocateInDeclarationDirectory",
                     "trDisplayName": "Put the pch file in the Declaration Directory",
                     "type": "CheckBox",
@@ -278,7 +284,7 @@
                         "uncheckedValue": "",
                         "checked": ""
                     }
-                },
+                },                
                 {
                     "name": "pchDirectory_Identifier",
                     "trDisplayName": "Precompiled File Directory Identifier",
@@ -303,11 +309,6 @@
                         "basePath": "%{ProjectSource}",
                         "path": "%{ProjectSource}"
                     }
-                },
-                {
-                    "name": "spacer3",
-                    "type": "Spacer",
-                    "data": { "factor": 1}
                 }
             ]
         },
