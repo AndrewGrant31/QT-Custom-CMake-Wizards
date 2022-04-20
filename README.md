@@ -12,7 +12,7 @@ This project enables you to create a project utilising CMake, with separate decl
 There are no other build options available in this model.
 You can declare the identifers for the folders. The default setting for these folders are inc and src.
 It also includes a precompiled header file, in a separate folder and a config file, again in a separate folder.
-You can set the C++ standard you wish from one of four (4) options: C++1, C++14, C++17 and C++20.
+You can set the C++ standard you wish from one of four (4) options: C++11, C++14, C++17 and C++20.
 If no standard is set the project will default to C++17. 
 
 You also get to choose the license you wish to use for your project. The available optins are:
