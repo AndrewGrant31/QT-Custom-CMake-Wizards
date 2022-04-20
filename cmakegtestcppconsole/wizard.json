@@ -316,7 +316,7 @@
                 {
                     "name": "GoogleTestFramework",
                     "trDisplayName": "Location of Google Test Framework",
-                    "mandatory": true,
+                    "mandatory": false,
                     "type": "PathChooser",
                     "data":
                     {
