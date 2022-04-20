@@ -1,5 +1,8 @@
 # QT-Custom-CMake-Wizards
  
+# There were some serious deficiencies in the previous versions. These have been addressed and the wizards should
+# now work on all platforms.
+ 
 Custom wizards for Qt Creator using CMake as the build system. 
 * Custom Project Wizard based on CMake
 * Custom class wizard
