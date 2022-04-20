@@ -39,11 +39,11 @@ include_directories(${GTestIncludes})
 get_property(FILES_FOR_TESTING GLOBAL PROPERTY GLOBAL_FILES)
 get_property(TEST_FILES GLOBAL PROPERTY GLOBAL_TEST_FILES)
 
-set(TESTFILES
-    test_appname.h
-    test_version.h
-)
-
+# delete and write runtests.h with each new run of cmake
+file(WRITE runtests.h "#pragma once")
+foreach(FILE ${TEST_FILES})
+    file(APPEND runtests.h "\n#include \\"${FILE}\\"")
+endforeach()
 
 
 set(STATUTORY_FILES

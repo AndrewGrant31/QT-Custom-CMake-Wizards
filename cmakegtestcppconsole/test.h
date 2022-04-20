@@ -11,7 +11,7 @@
 #include "../%{ProjectName}/%{DeclarationDirectory}/appDetails/%{filename}"
 
 
-class %{CN}_TEST : public ::testing::Test 
+class %{CNTest} : public ::testing::Test 
 {
     private:
 
@@ -19,7 +19,7 @@ class %{CN}_TEST : public ::testing::Test
         std::unique_ptr<%{namespaceId}::%{CN}> uptr_%{CN}{std::make_unique<%{namespaceId}::%{CN}>()};
 };
 
-TEST_F(%{CN}_TEST, Requires_a_test)
+TEST_F(%{CNTest}, Requires_a_test)
 {
     // test to run
 }

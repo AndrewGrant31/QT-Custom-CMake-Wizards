@@ -20,7 +20,7 @@
 
         { "key": "shortenedHeaderPath", "value": "%{JS: Util.relativeFilePath('%{DeclarationPath}/%{HdrFileName}', '%{InitialPath}' + '/' + Util.path('%{SrcFileName}'))}" },
         { "key": "shortenedSourcePath", "value": "%{JS: Util.relativeFilePath('%{DefinitionPath}/%{SrcFileName}', '%{InitialPath}' + '/' + Util.path('%{HdrFileName}'))}" },
-        { "key": "pchPath", "value": "%{JS: Util.relativeFilePath('%{pchLocation}/pch.h', '%{DeclarationPath}' + '/' + Util.path('pch.cpp'))}" },
+        { "key": "pchPath", "value": "%{JS: Util.relativeFilePath('%{pchLocation}', '%{DeclarationPath}' + '/' + Util.path('pch.' + Util.preferredSuffix('text/x-c++src')))}" },
         
         { "key": "HdrPath", "value": "%{DeclarationPath}/%{HdrFileName}" },
         { "key": "SrcPath", "value": "%{DefinitionPath}/%{SrcFileName}" },
@@ -164,12 +164,12 @@
                 },
                 {
                     "name": "pchLocation",
-                    "trDisplayName": "Where are the\npch files?",
+                    "trDisplayName": "Where is the\npch header file?",
                     "type": "PathChooser",
                     "visible": "%{JS: value('usePCH') === 'ON' ? true : false }",
                     "data":
                     {
-                        "kind": "directory",
+                        "kind": "file",
                         "basePath": "%{InitialPath}", 
                         "path": "%{InitialPath}"
                     }

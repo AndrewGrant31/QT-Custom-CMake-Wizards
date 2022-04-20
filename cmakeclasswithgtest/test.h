@@ -2,16 +2,17 @@
 
 #include "gtest/gtest.h"
 @if '%{UsePCH}'
-#include "../%{pchPath}"
+
+#include "%{pchTestPath}"
 @else 
 #include <iostream>
 #include <string>
 #include <memory>
 @endif
-#include "../%{ProjectName}/%{declarationDir}/appDetails/%{filename}"
+#include "%{fileBeingTested}"
 
 
-class %{Class}_TEST : public ::testing::Test 
+class %{testClass} : public ::testing::Test 
 {
     private:
 
@@ -19,7 +20,7 @@ class %{Class}_TEST : public ::testing::Test
         std::unique_ptr<%{namespaceId}::%{Class}> uptr_%{Class}{std::make_unique<%{namespaceId}::%{CN}>()};
 };
 
-TEST_F(%{Class}_TEST, testName)
+TEST_F(%{testClass}, Requires_A_Test)
 {
     // test to run
 }
