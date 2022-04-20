@@ -15,7 +15,7 @@
         { "key": "BuildSystem", "value": "cmake" },        
         { "key": "ProjectFile", "value": "%{ProjectDirectory}/CMakeLists.txt" },
         { "key": "ProjectSource", "value": "%{ProjectDirectory}/%{ProjectName}" },
-        { "key": "GoogleTestLocation", "value": "" },        
+        { "key": "GoogleTestLocation", "value": "C:/Tools/GTest/googletest-main/" },        
         
         { "key": "licensesSource", "value": "wizard_licenses" },
         { "key": "licenseDestination", "value": "%{ProjectDirectory}/wizardLicenses" },
@@ -324,7 +324,7 @@
                         "basePath": "%{JS: value('GoogleTestLocation') === '' ? 'InitialPath' : 'GoogleTestLocation'}", 
                         "path": "%{%{JS: value('GoogleTestLocation') === '' ? 'InitialPath' : 'GoogleTestLocation'}}"
                     }
-                },
+                },                
                 {
                     "name": "ViewGTestInstructions",
                     "trDisplayName": "View instructions for making GTest location variable persistent",
@@ -337,9 +337,33 @@
                     }
                 },
                 {
-                    "name": "PersistentGTest",
+                    "name": "GTestConfigurationInstructions",
+                    "trDisplayName": "Default configuration for GTest",
                     "type": "Label",
-                    "span": false,
+                    "span": true,
+                    "visible":"%{JS: value('ViewGTestInstructions') == 'ON' ? false : true}",
+                    "data":{
+                        "wordWrap": true,
+                        "trText": "
+                        You only need to configure this variable if the CMake
+                        find_package(GTest REQUIRED) instruction will never find the required packages.
+                        This is, usually, only on platforms where there isn't a native GoogleTest installer. 
+                        You can check if you need to set this variable by creating a 
+                        deletable project and looking at the multitude of errors that 
+                        will occur. Compile the project, if there are no errors reported
+                        by the initial project configuration. Any and all errors will 
+                        almost certainly occur, if GTest is not available.
+                        If you are configuring this project for use with Visual Studio, 
+                        don't forget to use the GTest package provided by vcpkg and to 
+                        ensure the GTest configuration option is checked in the 
+                        Visual Studio installer."
+                    }
+                },
+                {
+                    "name": "PersistentGTest",
+                    "trDisplayName": "Configure GTest as persistent in this wizard",
+                    "type": "Label",
+                    "span": true,
                     "visible": "%{JS: value('ViewGTestInstructions') == 'ON' ? true : false}",
                     "data":
                     {
@@ -354,8 +378,7 @@
                         EG: 
                         { \"key\": \"GoogleTestLocation\", \"value\": \"C:/GTest/googletest-main/\" },
                         Make sure to place a forward slash at the end of the path string. 
-                        Do not use double back slashes for the path dividers - only use single
-                        forward slashes.
+                        Do not use double back slashes for the path dividers - only use single forward slashes.
                         Reload (factory reset) or restart the Qt Creator IDE 
                         The location of the GoogleTest framework should now appear in the
                         GoogleTest Framework field. "
