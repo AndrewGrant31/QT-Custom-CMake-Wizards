@@ -248,7 +248,7 @@
                     "data":
                     {
                         "trText":"
-                            The test directory should be in the projects' root directory,
+                            The test directory should be in the project root directory,
                             with an identifier beginning with tests_ followed by the project 
                             name. 
                             Once located, click on the directory identifier and click \"next\"
