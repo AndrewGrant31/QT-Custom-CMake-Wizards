@@ -157,6 +157,61 @@
                     "type": "Spacer",
                     "data": { "factor": 1}
                 },
+                
+                {
+                    "name": "HdrFileName",
+                    "type": "LineEdit",
+                    "trDisplayName": "Header file",
+                    "mandatory": true,
+                    "data": 
+                    { 
+                        "trText": "%{JS: Cpp.classToFileName(value('Class'), Util.preferredSuffix('text/x-c++hdr'))}" 
+                    }
+                },
+                {
+                    "name": "declarationPath",
+                    "type": "PathChooser",
+                    "trDisplayName": "Declaration\nDirectory",
+                    "mandatory": true,
+                    "data":
+                    {
+                        "kind": "directory",
+                        "basePath": "%{InitialPath}",
+                        "path": "%{InitialPath}"
+                    }
+                },
+                {
+                    "name": "spacer5",
+                    "type": "Spacer",
+                    "data": { "factor": 1}
+                },
+                {
+                    "name": "SrcFileName",
+                    "type": "LineEdit",
+                    "trDisplayName": "Source file",
+                    "mandatory": true,
+                    "data": { "trText": "%{JS: Cpp.classToFileName(value('Class'), Util.preferredSuffix('text/x-c++src'))}" }
+                },
+                {
+                    "name": "definitionPath",
+                    "type": "PathChooser",
+                    "trDisplayName": "Definition\nDirectory",
+                    "mandatory": true,
+                    "data":
+                    {
+                        "kind": "directory",
+                        "basePath": "%{InitialPath}",
+                        "path": "%{InitialPath}"
+                    }
+                }
+            ]
+        },
+        {
+            "trDisplayName": "Precompiled Header File and Test Directory",
+            "trShortTitle": "GTest",
+            "typeId": "Fields",
+            "data" :
+            [
                 {
                     "name": "usePCH",
                     "trDisplayName": "Does this project use\na precompiled header file",
@@ -181,46 +236,23 @@
                         "path": "%{InitialPath}"
                     }
                 },
-
                 {
-                    "name": "HdrFileName",
-                    "type": "LineEdit",
-                    "trDisplayName": "Header file",
-                    "mandatory": true,
-                    "data": 
-                    { 
-                        "trText": "%{JS: Cpp.classToFileName(value('Class'), Util.preferredSuffix('text/x-c++hdr'))}" 
-                    }
+                    "name": "spacer4",
+                    "type": "Spacer",
+                    "data": { "factor": 2}   
                 },
                 {
-                    "name": "declarationPath",
-                    "type": "PathChooser",
-                    "trDisplayName": "Declaration\nDirectory",
-                    "mandatory": true,
+                    "name": "GTestInstructions",
+                    "trDisplayName": "Locate the GTest directory",
+                    "type": "Label",
                     "data":
                     {
-                        "kind": "directory",
-                        "basePath": "%{InitialPath}",
-                        "path": "%{InitialPath}"
-                    }
-                },
-                {
-                    "name": "SrcFileName",
-                    "type": "LineEdit",
-                    "trDisplayName": "Source file",
-                    "mandatory": true,
-                    "data": { "trText": "%{JS: Cpp.classToFileName(value('Class'), Util.preferredSuffix('text/x-c++src'))}" }
-                },
-                {
-                    "name": "definitionPath",
-                    "type": "PathChooser",
-                    "trDisplayName": "Definition\nDirectory",
-                    "mandatory": true,
-                    "data":
-                    {
-                        "kind": "directory",
-                        "basePath": "%{InitialPath}",
-                        "path": "%{InitialPath}"
+                        "trText":"
+                            The test directory should be in the projects' root directory,
+                            with an identifier beginning with tests_ followed by the project 
+                            name. 
+                            Once located, click on the directory identifier and click \"next\"
+                        "
                     }
                 },
                 {
