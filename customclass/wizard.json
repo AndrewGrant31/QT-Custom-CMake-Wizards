@@ -150,30 +150,7 @@
                     "type": "Spacer",
                     "data": { "factor": 1}
                 },
-                {
-                    "name": "usePCH",
-                    "trDisplayName": "Does this project use\na precompiled header file",
-                    "type": "CheckBox",
-                    "mandatory": false,
-                    "data":
-                    {
-                        "checkedValue": "ON",
-                        "uncheckedValue": "",
-                        "checked": "ON"
-                    }
-                },
-                {
-                    "name": "pchLocation",
-                    "trDisplayName": "Where is the\npch header file?",
-                    "type": "PathChooser",
-                    "visible": "%{JS: value('usePCH') === 'ON' ? true : false }",
-                    "data":
-                    {
-                        "kind": "file",
-                        "basePath": "%{InitialPath}", 
-                        "path": "%{InitialPath}"
-                    }
-                },
+
 
                 {
                     "name": "HdrFileName",
@@ -213,6 +190,38 @@
                     {
                         "kind": "directory",
                         "basePath": "%{InitialPath}",
+                        "path": "%{InitialPath}"
+                    }
+                }
+            ]
+        },
+        {
+            "trDisplayName": "Precompiled Header File Location",
+            "trShortTitle": "PCH Location",
+            "typeId": "Fields",
+            "data": 
+            [
+                {
+                    "name": "usePCH",
+                    "trDisplayName": "Does this project use\na precompiled header file",
+                    "type": "CheckBox",
+                    "mandatory": false,
+                    "data":
+                    {
+                        "checkedValue": "ON",
+                        "uncheckedValue": "",
+                        "checked": "ON"
+                    }
+                },
+                {
+                    "name": "pchLocation",
+                    "trDisplayName": "Where is the\npch header file?",
+                    "type": "PathChooser",
+                    "visible": "%{JS: value('usePCH') === 'ON' ? true : false }",
+                    "data":
+                    {
+                        "kind": "file",
+                        "basePath": "%{InitialPath}", 
                         "path": "%{InitialPath}"
                     }
                 }
