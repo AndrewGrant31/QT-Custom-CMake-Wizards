@@ -2,6 +2,9 @@
  
 ### There were some serious deficiencies in the previous versions. 
 ### These have been addressed and the wizards should now work on all platforms.
+
+### Changes made to the way the final code is presented - writing and  
+### compiling the code should be much easier
  
 Custom wizards for Qt Creator using CMake as the build system. 
 * Custom Project Wizard based on CMake
