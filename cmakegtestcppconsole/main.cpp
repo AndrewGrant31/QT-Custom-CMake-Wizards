@@ -1,7 +1,9 @@
 %{Cpp:LicenseTemplate}\
-#include "%{appnamehdr_location}"
+#include "%{appNameDirectory}"
+#include "%{versionHdrDirectory}"
 @if '%{UsePCH}'
-#include "%{pchDirectoryName}/%{pch}"
+#include "%{pch}"
+
 @else 
 #include <iostream>
 #include <string>
@@ -16,6 +18,8 @@
 {
     auto appName{std::%{CPP11Unique_Ptr}<AppDetails::AppName>()};
     std::cout << appName->GetAppName() << std::endl;
+
+    std::cout << AppDetails::Version::GetFullVersion() << std::endl;
     
     @if '%{CPP11ExitPoint}'
     %{CPP11ExitPoint}

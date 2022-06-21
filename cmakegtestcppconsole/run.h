@@ -2,7 +2,8 @@
 #pragma once
 
 @if '%{UsePCH}'
-#include "../%{pchDirectoryName}/%{pch}"
+//#include "../%{pchDirectoryName}/%{pch}"
+#include "%{pch}"
 @else 
 #include <iostream>
 #include <string>

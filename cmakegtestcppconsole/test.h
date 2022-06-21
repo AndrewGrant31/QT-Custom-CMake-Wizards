@@ -2,13 +2,13 @@
 
 #include "gtest/gtest.h"
 @if '%{UsePCH}'
-#include "../%{pchHeader}"
+#include "%{pch}"
 @else 
 #include <iostream>
 #include <string>
 #include <memory>
 @endif
-#include "../%{ProjectName}/%{DeclarationDirectory}/appDetails/%{filename}"
+#include "appDetails/%{filename}"
 
 
 class %{CNTest} : public ::testing::Test 
@@ -19,7 +19,8 @@ class %{CNTest} : public ::testing::Test
         std::unique_ptr<%{namespaceId}::%{CN}> uptr_%{CN}{std::make_unique<%{namespaceId}::%{CN}>()};
 };
 
-TEST_F(%{CNTest}, Requires_a_test)
+TEST_F(%{CNTest}, %{testname})
 {
+    %{test}
     // test to run
 }

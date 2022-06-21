@@ -1,3 +1,12 @@
+set(DIRS 
+    @if '%{UsePCH}'
+    "${CMAKE_CURRENT_SOURCE_DIR}/%{pchHeaderDirectory}"
+    @endif 
+    "${CMAKE_CURRENT_SOURCE_DIR}/%{DeclarationDirectory}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/%{DefinitionDirectory}"
+)
+
+
 set(STATUTORY_FILES
     "%{CppFileName}"
     @if '%{UsePCH}'
@@ -22,7 +31,6 @@ set(FILES
 foreach(FILE ${FILES})
     if(NOT "${FILE}" STREQUAL "%{CppFileName}")
         if("${FILE}" MATCHES "_test.h")
-            #set(FILE ${PROJECT_SOURCE_DIR}/tests_%{ProjectName}/${FILE})
             list(APPEND TEST_FILES "${FILE}")
         else()
             set(FILE ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}/${FILE})
@@ -34,6 +42,10 @@ endforeach()
 configure_file(${PROJECT_SOURCE_DIR}/config.h.in ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}/config/%{configFile})
 
 add_executable(${CMAKE_PROJECT_NAME} ${FOR_GLOBAL_REACH} ${STATUTORY_FILES})
+
+foreach(DIR "${DIRS}")
+    target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC "${DIR}")
+endforeach()
 
 set_property(GLOBAL PROPERTY GLOBAL_FILES "${FOR_GLOBAL_REACH}")
 set_property(GLOBAL PROPERTY GLOBAL_TEST_FILES "${TEST_FILES}")

@@ -1,26 +1,32 @@
 %{Cpp:LicenseTemplate}\
 #pragma once
 
+#include "../../../config/config.h"
 @if '%{UsePCH}'
-#include "../../%{pchDirectoryName}/%{pch}"
+#include "%{pch}"
 @else 
 #include <iostream>
 #include <string>
 #include <memory>
 @endif
 
-#include "../../config/config.h"
-
 namespace AppDetails
 {
     class Version
     {
         private:
-            std::string v_major_{std::to_string(%{ProjectName}_VERSION_MAJOR)};
-            std::string v_minor_{std::to_string(%{ProjectName}_VERSION_MINOR)};
-            std::string v_patch_{std::to_string(%{ProjectName}_VERSION_PATCH)};
-            std::string v_tweak_{std::to_string(%{ProjectName}_VERSION_TWEAK)};
+            const static std::string verMajor;
+            const static std::string verMinor;
+            const static std::string verTweak;
+            const static std::string verPatch;
         public:
-            std::string GetVersion_Full();
+            static std::string GetMajorVersion();
+            static std::string GetMinorVersion();
+            static std::string GetTweakVersion();
+            static std::string GetPatchVersion();
+
+            static std::string GetFullVersion();
+            
+
     };
 }

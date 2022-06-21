@@ -15,7 +15,7 @@
         { "key": "BuildSystem", "value": "cmake" },        
         { "key": "ProjectFile", "value": "%{ProjectDirectory}/CMakeLists.txt" },
         { "key": "ProjectSource", "value": "%{ProjectDirectory}/%{ProjectName}" },
-        { "key": "GoogleTestLocation", "value": "" },        
+        { "key": "GoogleTestLocation", "value": "C:/Tools/GTest/googletest-main/" },        
         
         { "key": "licensesSource", "value": "wizard_licenses" },
         { "key": "licenseDestination", "value": "%{ProjectDirectory}/wizardLicenses" },
@@ -36,11 +36,13 @@
         { "key": "versionhdr", "value": "%{JS: 'version.' + Util.preferredSuffix('text/x-c++hdr')}" },   
         { "key": "appnamehdr_test", "value": "%{JS: 'appname' + '_test.' + Util.preferredSuffix('text/x-c++hdr')}" },
         { "key": "versionhdr_test", "value": "%{JS: 'version' + '_test.' + Util.preferredSuffix('text/x-c++hdr')}" },            
+
+              
        
         { "key": "appnamehdr_location", "value": "%{DeclarationDirectory}/appDetails/%{appnamehdr}" },
         { "key": "appnamesrc_location", "value": "%{JS: '%{DefinitionDirectory}/appDetails/appname.' + Util.preferredSuffix('text/x-c++src') }" },
-        { "key": "versionhdr_location", "value": "%{DeclarationDirectory}/appDetails/%{versionhdr}" },
-        { "key": "versionsrc_location", "value": "%{JS: '%{DefinitionDirectory}/appDetails/version.' + Util.preferredSuffix('text/x-c++src') }" },
+        { "key": "versionhdr_location", "value": "%{DeclarationDirectory}/appDetails/version/%{versionhdr}" },
+        { "key": "versionsrc_location", "value": "%{JS: '%{DefinitionDirectory}/appDetails/version/version.' + Util.preferredSuffix('text/x-c++src') }" },
 
         { "key": "pchDirectoryName", "value": "%{JS: value('LocateInDeclarationDirectory') === '' ? '%{pchDirectory_Identifier}' : '%{DeclarationDirectory}' }" },
                
@@ -49,13 +51,17 @@
         
         { "key": "pchHeader", "value": "%{ProjectName}/%{pchHeaderDirectory}/%{pch}" },
         { "key": "pchSource", "value": "%{ProjectName}/%{pchSourceDirectory}/%{pchsrc}"},        
+
+        { "key": "appNameDirectory", "value": "appDetails/%{appnamehdr}" },
+        { "key": "pchDirectory", "value": "%{pch}" }, 
+        { "key": "versionHdrDirectory", "value": "appDetails/version/%{versionhdr}" },        
  
         { "key": "configFile", "value": "%{JS: 'config.' + Util.preferredSuffix('text/x-c++hdr') }" },
 
         { "key": "VersionMajor", "value": "0" },
-        { "key": "VersionMinor", "value": "0" },
-        { "key": "VersionPatch", "value": "1" },
+        { "key": "VersionMinor", "value": "1" },
         { "key": "VersionTweak", "value": "0" },
+        { "key": "VersionPatch", "value": "0" },
         
         { "key": "UsingCPP11", "value": "%{JS: value('standard') === '11' ? 'ON' : ''}" },      
    
@@ -64,7 +70,11 @@
         { "key": "CPP11ExitPoint", "value": "%{JS: value('standard') === '11' ? 'return 0;' : '' }" },
   
         { "key": "AppEntryFile", "value": "%{JS: value('AppEntry') === '' ? 'main' : '%{ProjectName}' }"},
-        { "key": "CppFileName", "value": "%{JS: '%{AppEntryFile}.' + Util.preferredSuffix('text/x-c++src')}"}
+        { "key": "CppFileName", "value": "%{JS: '%{AppEntryFile}.' + Util.preferredSuffix('text/x-c++src')}"},
+
+        { "key": "appNameTest", "value": "EXPECT_EQ(\"%{ProjectName}\", uptr_%{CN}->GetAppName() );" },
+        { "key": "versionTest", "value": "EXPECT_EQ(\"0.1.0.0\", uptr_%{CN}->GetFullVersion() );" },
+        { "key": "testname", "value": "%{JS: 'Get_%{CN}'.toUpperCase() }" }
         
     ],
 
@@ -611,8 +621,8 @@
                         { "key": "CN", "value": "Version" },
                         { "key": "CNTest", "value": "%{JS: '%{CN}_Test'.toUpperCase()}" },                        
                         { "key": "namespaceId", "value": "AppDetails" },
-                        { "key": "filename", "value": "%{versionhdr}" }                    
-                    ]
+                        { "key": "filename", "value": "version/%{versionhdr}" } ,
+                        { "key": "test", "value": "%{versionTest}" }                    ]
                 },
                 {
                     "source": "test.h",
@@ -623,7 +633,8 @@
                             { "key": "CN", "value": "AppName" },
                             { "key": "CNTest", "value": "%{JS: '%{CN}_Test'.toUpperCase()}" },
                             { "key": "namespaceId", "value": "AppDetails" },
-                            { "key": "filename", "value": "%{appnamehdr}" }                    
+                            { "key": "filename", "value": "%{appnamehdr}" },
+                            { "key": "test", "value": "%{appNameTest}" }                                                                            
                         ]
                     },
                 {

@@ -1,5 +1,6 @@
 %{Cpp:LicenseTemplate}\
-#include "../../%{appnamehdr_location}"
+//#include "../../%{appnamehdr_location}"
+#include "%{appNameDirectory}"
 
 using namespace AppDetails;
 
