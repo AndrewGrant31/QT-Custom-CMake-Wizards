@@ -32,16 +32,22 @@
         { "key": "runhdr", "value": "%{JS: '%{DeclarationDirectory}/run.' + Util.preferredSuffix('text/x-c++hdr')}" },
         { "key": "runsrc", "value": "%{JS: '%{DefinitionDirectory}/run.' + Util.preferredSuffix('text/x-c++src')}" },
         { "key": "appnamehdr", "value": "%{JS: '%{DeclarationDirectory}/appDetails/appname.' + Util.preferredSuffix('text/x-c++hdr')}" },
-        { "key": "appnamesrc", "value": "%{JS: '%{DefinitionDirectory}/appDetails/appname.' + Util.preferredSuffix('text/x-c++src') }" },        
+        { "key": "appnamesrc", "value": "%{JS: '%{DefinitionDirectory}/appDetails/appname.' + Util.preferredSuffix('text/x-c++src') }" },      
+
+        { "key": "shortenedAppNameHdr", "value": "%{JS: 'appDetails/appname.' + Util.preferredSuffix('text/x-c++hdr')}" },
+        
+        { "key": "versionhdr", "value": "%{JS: '%{DeclarationDirectory}/appDetails/version/version.' + Util.preferredSuffix('text/x-c++hdr')}" },
+        { "key": "versionsrc", "value": "%{JS: '%{DefinitionDirectory}/appDetails/version/version.' + Util.preferredSuffix('text/x-c++src')}" },       
+        { "key": "shortenedVersionHdr", "value": "%{JS: 'appDetails/version/version.' + Util.preferredSuffix('text/x-c++hdr')}" },
         
         { "key": "pchHeader", "value": "%{ProjectSource}/pch/%{pch}" },
         { "key": "pchSource", "value": "%{ProjectSource}/pch/%{pchsrc}" },   
         { "key": "configFile", "value": "%{JS: 'config.' + Util.preferredSuffix('text/x-c++hdr') }" },
 
         { "key": "VersionMajor", "value": "0" },
-        { "key": "VersionMinor", "value": "0" },
-        { "key": "VersionPatch", "value": "1" },
+        { "key": "VersionMinor", "value": "1" },
         { "key": "VersionTweak", "value": "0" },
+        { "key": "VersionPatch", "value": "0" },
         
         { "key": "UsingCPP11", "value": "%{JS: value('standard') === '11' ? 'ON' : ''}" },      
 
@@ -434,7 +440,16 @@
                     "target": "%{ProjectSource}/%{appnamesrc}",
                     "openInEditor": false
                 },
-
+                {
+                "source": "version.h",
+                "target": "%{ProjectSource}/%{versionhdr}",
+                "openInEditor":"false"
+                },
+                {
+                "source": "version.cpp",
+                "target": "%{ProjectSource}/%{versionsrc}",
+                "openInEditor":"false"
+                },
                 {
                     "source": "../git.ignore",
                     "target": ".gitignore",

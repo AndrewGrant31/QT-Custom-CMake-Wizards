@@ -1,5 +1,5 @@
 %{Cpp:LicenseTemplate}\
-#include "../../%{appnamehdr}"
+#include "%{shortenedAppNameHdr}"
 
 using namespace AppDetails;
 

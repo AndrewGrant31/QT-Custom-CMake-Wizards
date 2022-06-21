@@ -2,7 +2,7 @@
 #pragma once
 
 @if '%{UsePCH}'
-#include "../../pch/%{pch}"
+#include "%{pch}"
 @else 
 #include <iostream>
 #include <string>
