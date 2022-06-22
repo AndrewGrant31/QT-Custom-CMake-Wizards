@@ -452,7 +452,7 @@
                 },
                 {
                     "source": "git.ignore",
-                    "target": ".gitignore",
+                    "target": "%{ProjectDirectory}/.gitignore",
                     "condition": "%{JS: ! %{IsSubproject} && '%{VersionControl}' === 'G.Git'}"
                 }
             ]
