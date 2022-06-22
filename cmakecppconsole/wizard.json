@@ -451,7 +451,7 @@
                 "openInEditor":"false"
                 },
                 {
-                    "source": "../git.ignore",
+                    "source": "git.ignore",
                     "target": ".gitignore",
                     "condition": "%{JS: ! %{IsSubproject} && '%{VersionControl}' === 'G.Git'}"
                 }
