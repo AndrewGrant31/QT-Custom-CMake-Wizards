@@ -5,7 +5,7 @@
     "category": "AG.C++",
     "trDescription": "Creates a C++ declaration, definition and test files for a new class that you can add to a C++ project.",
     "trDisplayName": "C++ Class with GTest",
-    "trDisplayCategory": "Basic C/C++",
+    "trDisplayCategory": "Basic Custom C++ Class",
     "iconText": "h/cpp",
     "enabled": "%{JS: value('Plugins').indexOf('CppEditor') >= 0}",
 
