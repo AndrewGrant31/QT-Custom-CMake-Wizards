@@ -19,7 +19,7 @@ It also includes a precompiled header file, in a separate folder and a config fi
 You can set the C++ standard you wish from one of four (4) options: C++11, C++14, C++17 and C++20.
 If no standard is set the project will default to C++17. 
 
-You also get to choose the license you wish to use for your project. The available optins are:
+You also get to choose the license you wish to use for your project. The available options are:
 * GPL V2,
 * GPL V3,
 * LGPL V2,
