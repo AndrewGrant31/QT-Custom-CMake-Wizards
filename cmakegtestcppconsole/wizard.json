@@ -5,7 +5,7 @@
     "category": "AG.Custom Projects",
     "trDescription": "C++ console application using the CMake build system and\nthe GTest testing framework from Google. Uses the C++17 standard as default.\nUtilises separate, user defined, declaration and definition directories, as well as a separate precompiled header (pch) directory. ",
     "trDisplayName": "C++ CMake GTest Application",
-    "trDisplayCategory": "CMake Project",
+    "trDisplayCategory": "CMake C++ Console Project",
     "icon": "consoleapplication.png",
     "iconKind": "Themed",
     "enabled": "%{JS: value('Plugins').indexOf('CMakeProjectManager') >= 0}",
