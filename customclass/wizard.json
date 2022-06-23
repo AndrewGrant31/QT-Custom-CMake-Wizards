@@ -5,7 +5,7 @@
     "category": "AG.C++",
     "trDescription": "Creates a C++ declaration and definition files for a new class that you can add to a C++ project.",
     "trDisplayName": "Basic C++ Class",
-    "trDisplayCategory": "Basic C/C++",
+    "trDisplayCategory": "Basic Custom C++ Class",
     "iconText": "h/cpp",
     "enabled": "%{JS: value('Plugins').indexOf('CppEditor') >= 0}",
 
