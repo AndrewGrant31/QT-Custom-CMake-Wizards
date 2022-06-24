@@ -1,11 +1,5 @@
 
-set(DIRS
-@if '%{UsePCH}'
-    "${CMAKE_CURRENT_SOURCE_DIR}/pch"
-@endif 
-    "${CMAKE_CURRENT_SOURCE_DIR}/%{DeclarationDirectory}"
-    "${CMAKE_CURRENT_SOURCE_DIR}/%{DefinitionDirectory}"
-)
+
 
 set(FILES
     "%{CppFileName}"
@@ -26,6 +20,13 @@ configure_file(${PROJECT_SOURCE_DIR}/config.h.in ${PROJECT_SOURCE_DIR}/${PROJECT
 
 add_executable(${CMAKE_PROJECT_NAME} ${FILES})
 
+set(DIRS
+@if '%{UsePCH}'
+    "${CMAKE_CURRENT_SOURCE_DIR}/pch"
+@endif 
+    "${CMAKE_CURRENT_SOURCE_DIR}/%{DeclarationDirectory}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/%{DefinitionDirectory}"
+)
 foreach(DIR "${DIRS}")
     target_include_directories (${CMAKE_PROJECT_NAME} PUBLIC "${DIR}" )
 endforeach()
