@@ -101,10 +101,7 @@ be accompanied with -Copy). Qt Creator, again, as far I know, prefers all direct
 *    Linux and macOS: 
    +      $HOME/.config/QtProject/qtcreator/templates/wizards  
 
-You may need to create a separate folder (with the identifier cmakecpp) in the relevant directory:
-
-   + projects/cmakecpp  
-   + classes/cmakecpp
+ Just put the wizards in this folder [directory] and let Qt Creator do the rest... It will (should?) display the wizards correctly. 
 
 You may need to restart Qt Creator, or do a factory reset (Probably easier to just restart Qt Creator)
 You should restart Qt Creator using the [path-to-qt creator]/qtcreator -customwizard-verbose command.  
