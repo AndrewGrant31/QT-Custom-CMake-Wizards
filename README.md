@@ -8,11 +8,11 @@
  
 Custom wizards for Qt Creator using CMake as the build system. 
 * Custom Project Wizards based on CMake
- + A straightforward, plain console project  
- + A console project utilising the GoogleTest test framework  
+  + A straightforward, plain console project  
+  + A console project utilising the GoogleTest test framework  
 * Custom class wizards  
- + A class usable with the plain console project  
- + A class usable with the GoogleTest console project  
+  + A class usable with the plain console project  
+  + A class usable with the GoogleTest console project  
 
 ## Custom Qt Creator Project Wizard
 
