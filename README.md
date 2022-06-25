@@ -80,13 +80,15 @@ The relevant directories are listed, on the web page as being (as of January 202
    +     share/qtcreator/templates/wizards
 * macOS: 
 *     Qt Creator.app/Contents/Resources/templates/wizards
-   + Local user's settings directory:
+Local user's settings directory:
 *  Windows: 
    +      %APPDATA%\QtProject\qtcreator\templates\wizards  
  _The Windows location is: **C:\Users\%UserName%\AppData\Roaming\QtProject\qtcreator\templates\wizards\[classes][projects]**  
  %UserName% is your username that you log into and use Windows as... 
 if you are unsure, look in the File Explorer for your login name (there's a directory/folder, under Users with your username).  
 Failing that open a command prompt and type in echo %UserName% and your username will be displayed._  
+*Linux/Mac
+   +     ~/.config/QtProject/qtcreator/templates/wizards
  
  You may find that Qt Creator doesn't pick up the new custom wizards, easily or at all. In which case just move them to:  
 
