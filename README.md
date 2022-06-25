@@ -87,7 +87,7 @@ Local user's settings directory:
  %UserName% is your username that you log into and use Windows as... 
 if you are unsure, look in the File Explorer for your login name (there's a directory/folder, under Users with your username).  
 Failing that open a command prompt and type in echo %UserName% and your username will be displayed._  
-*Linux/Mac
+* Linux/Mac
    +     ~/.config/QtProject/qtcreator/templates/wizards
  
  You may find that Qt Creator doesn't pick up the new custom wizards, easily or at all. In which case just move them to:  
@@ -98,8 +98,8 @@ directory\folder and put the custom wizards in the relevant directory [classes][
 Qt Creator is not, as far as I know, very forgiving if there are two directories with the same name (one of which will usually  
 be accompanied with -Copy). Qt Creator, again, as far I know, prefers all directories to have unique identifiers (names)._  
  
-* Linux and macOS: 
-   +      $HOME/.config/QtProject/qtcreator/templates/wizards
+*    Linux and macOS: 
+   +      $HOME/.config/QtProject/qtcreator/templates/wizards  
 
 You may need to create a separate folder (with the identifier cmakecpp) in the relevant directory:
 
