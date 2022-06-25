@@ -75,14 +75,14 @@ The wizard does not check for name clashes or correctness, other than the normal
 These two wizards should be placed in the approrpriate locations for Qt Creator wizards. You can find the relevant places on the Qt Creator website (https://doc.qt.io/qtcreator/creator-project-wizards.html) 
 The relevant directories are listed, on the web page as being (as of January 2022): 
 * Windows: 
-*     share\qtcreator\templates\wizards
+   +     share\qtcreator\templates\wizards
 * Linux: 
-*     share/qtcreator/templates/wizards
+   +     share/qtcreator/templates/wizards
 * macOS: 
 *     Qt Creator.app/Contents/Resources/templates/wizards
-** Local user's settings directory:
+   + Local user's settings directory:
 *  Windows: 
-*      %APPDATA%\QtProject\qtcreator\templates\wizards  
+   +      %APPDATA%\QtProject\qtcreator\templates\wizards  
  _The Windows location is: **C:\Users\%UserName%\AppData\Roaming\QtProject\qtcreator\templates\wizards\[classes][projects]**  
  %UserName% is your username that you log into and use Windows as... 
 if you are unsure, look in the File Explorer for your login name (there's a directory/folder, under Users with your username).  
@@ -97,12 +97,12 @@ Qt Creator is not, as far as I know, very forgiving if there are two directories
 be accompanied with -Copy). Qt Creator, again, as far I know, prefers all directories to have unique identifiers (names)._  
  
 * Linux and macOS: 
-*      $HOME/.config/QtProject/qtcreator/templates/wizards
+   +      $HOME/.config/QtProject/qtcreator/templates/wizards
 
 You may need to create a separate folder (with the identifier cmakecpp) in the relevant directory:
 
-** projects/cmakecpp  
-** classes/cmakecpp
+   + projects/cmakecpp  
+   + classes/cmakecpp
 
 You may need to restart Qt Creator, or do a factory reset (Probably easier to just restart Qt Creator)
 You should restart Qt Creator using the [path-to-qt creator]/qtcreator -customwizard-verbose command.  
