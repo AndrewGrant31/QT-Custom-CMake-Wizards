@@ -79,7 +79,7 @@ The relevant directories are listed, on the web page as being (as of January 202
 * Linux: 
    +     share/qtcreator/templates/wizards
 * macOS: 
-*     Qt Creator.app/Contents/Resources/templates/wizards
+   +     Qt Creator.app/Contents/Resources/templates/wizards
 Local user's settings directory:
 *  Windows: 
    +      %APPDATA%\QtProject\qtcreator\templates\wizards  
