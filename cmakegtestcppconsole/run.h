@@ -8,6 +8,9 @@
 #include <iostream>
 #include <string>
 #include <memory>
+@if '%{cstdlib}'
+#include <cstdlib>
+@endif
 @endif
 
 namespace RunApp

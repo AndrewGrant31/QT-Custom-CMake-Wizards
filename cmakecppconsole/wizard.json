@@ -51,7 +51,8 @@
         
         { "key": "UsingCPP11", "value": "%{JS: value('standard') === '11' ? 'ON' : ''}" },      
 
-                
+        { "key": "cstdlib", "value": "%{JS: value('exitPoint') === 'return 0;' ? '' : 'ON' }" },  
+        
         { "key": "CPP11Unique_Ptr", "value": "%{JS: value('standard') === '11' ? 'unique_ptr' : 'make_unique' }" },
         { "key": "CPP11EntryPoint", "value": "%{JS: value('standard') === '11' ? 'int main(int argc, char* argv[])' : '' }" },
         { "key": "CPP11ExitPoint", "value": "%{JS: value('standard') === '11' ? 'return 0;' : '' }" },
