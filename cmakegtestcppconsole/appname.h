@@ -21,7 +21,7 @@ namespace AppDetails
             static const std::string appname_;
 
         public:
-            AppName() = default;
+            explicit AppName() = default;
             const std::string GetAppName();
 
     };
