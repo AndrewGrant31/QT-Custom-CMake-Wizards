@@ -18,6 +18,6 @@ namespace RunApp
     class Run
     {
         public:
-            Run() = default;
+            explicit Run() = default;
     };
 }
