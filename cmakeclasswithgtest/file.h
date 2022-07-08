@@ -20,7 +20,7 @@ namespace %{namespaceId}
     private:
 
     public:
-        %{CN} ( ) = default;
+        explicit %{CN} ( ) = default;
         
     };
 }
