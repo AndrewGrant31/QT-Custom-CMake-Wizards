@@ -118,9 +118,8 @@ They have been tested using Qt Creator on Windows 10 and 11 and on Ubuntu 21.04 
 
 ## Notes - GTest
 With the project "cmakegtestcppconsole" you will, almost certainly, want to change the default location for GTest. 
-In the relavant wizard.json file (in the cmakegtestcppconsole directory) locate and change the line 18 so that instead of reading  
-_C:/Tools/googletest/googletest-main/_ or is an empty field  
-it should display where you have placed GTest.
+In the relavant wizard.json file (in the cmakegtestcppconsole directory) locate and change the line 18 so that instead of being an empty  
+field, it should read the location for where you have located the Googletest framework (eg: "C:/Tools/GTest/goodtest")
 
 To use Gtest with this project template, download the code (google/googletest from github) (I have found using the zip file the best way)  
 and extract or clone it to a default location on your hard drive.  
